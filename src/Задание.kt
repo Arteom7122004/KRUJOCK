@@ -1,15 +1,16 @@
 fun main(arch: Array<String>) {
+    var names: Array<String> = arrayOf(" ", " ", " "," " ," " )
+    var i: Int = 0
+    while (i <= 4) {
     print("Введите имя и фамилию: ")
-    var name = readLine()
+    var name = readLine().toString()
     print("Введите возраст: ")
     val age = readLine()!!.toInt()
-    if (age < 14) {
-        println("Вызов полиции")
+    if (age >= 18) {
+        names[i] = name
+        i = i + 1
+
     }
-    else if (age < 18) {
-        println ("Невпускать $name")
     }
-    else {
-        println("Проход разрешён")
-    }
+    println(names.contentToString())
 }
