@@ -1,24 +1,15 @@
 fun main(arch: Array<String>) {
-    Names()
-    Print(Array<String>)
-}
-fun Names() {
-    var names: Array<String> = arrayOf(" ", " ", " ", " ", " ")
-    var i: Int = 0
-    while (i <= 4) {
-        print("Введите имя и фамилию: ")
-        var name = readLine().toString()
-        print("Введите возраст: ")
-        val age = readLine()!!.toInt()
-        if (age >= 18) {
-            names[i] = name
-            i = i + 1
-
-
-        }
+    var i=1
+    val a = mutableListOf<User>()
+    while(i<5){
+        a[i] = User(name=(readLine().toString()), surName = (readLine().toString()), age = (readLine()!!.toInt()))
+        i = i+1
     }
+    println(a)
 }
-fun Print(Names: Array<String>) {
-    println(Names())
 
-}
+data class User(
+    var name: String,
+    var surName: String,
+    var age: Int
+)
