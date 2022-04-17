@@ -1,15 +1,41 @@
+
+
 fun main(arch: Array<String>) {
-    print("Введите имя и фамилию: ")
-    var name = readLine()
-    print("Введите возраст: ")
-    val age = readLine()!!.toInt()
-    if (age < 14) {
-        println("Вызов полиции")
-    }
-    else if (age < 18) {
-        println ("Невпускать $name")
-    }
-    else {
-        println("Проход разрешён")
-    }
+    val bookOne: Book? = null
+    val bookTwo: Book? = Book(1234, 13134)
+    bookOne?.let{buy(publication = bookOne)}
+    bookTwo?.let {buy(publication =  bookTwo)}
+
 }
+
+
+interface Publication {
+    val price: Int
+    val wordCount: Int
+    fun getType(): String
+}
+class Book(override val price: Int, override val wordCount: Int) : Publication{
+    override fun getType() =
+        when {
+            wordCount <= 1000 -> "Flash Fiction"
+            wordCount <= 7500 -> "Short Story"
+            else -> {
+                "Novel"
+            }
+}
+class Magazine(override val price: Int, override val wordCount: Int) : Publication{
+    override fun getType() = "Magazine"
+    }
+
+
+}
+
+
+
+
+
+fun buy (publication: Publication){
+    println("The purchase is complete. The purchase amount was ${publication.price}")
+}
+
+
