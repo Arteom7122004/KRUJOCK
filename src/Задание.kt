@@ -1,51 +1,41 @@
 
 
 fun main(arch: Array<String>) {
-    var C: Book? = null
-    var D: Book? = Book()
-    C?.let{buy(price = C.price)}
-    D?.let{buy(price = D.price)}
-    var a = readLine()!!.toString()
-    var price = readLine()!!.toDouble()
-    var wordCount = readLine()!!.toInt()
-    getType(a = a,price=price, wordCount=wordCount)
-     buy(price=price)
+    val bookOne: Book? = null
+    val bookTwo: Book? = Book(1234, 13134)
+    bookOne?.let{buy(publication = bookOne)}
+    bookTwo?.let {buy(publication =  bookTwo)}
+
 }
 
 
 interface Publication {
-    var price: Double
-    var wordCount: Int
+    val price: Int
+    val wordCount: Int
+    fun getType(): String
 }
-class Book: Publication{
-    override var price = readLine()!!.toDouble()
-    override var wordCount = readLine()!!.toInt()
-}
-class Magazine: Publication{
-    override var price: Double = readLine()!!.toDouble()
-    override var wordCount: Int = readLine()!!.toInt()
-
-
-}
-
-fun getType(a: String, price: Double, wordCount: Int) {
-    if (a == "Book"){
-        if (wordCount <= 1000) {
-            println("Flash Fiction")
-        }
-        else {
-            if (wordCount <= 7500){
-                println("Short Story")
+class Book(override val price: Int, override val wordCount: Int) : Publication{
+    override fun getType() =
+        when {
+            wordCount <= 1000 -> "Flash Fiction"
+            wordCount <= 7500 -> "Short Story"
+            else -> {
+                "Novel"
             }
-            else println("Novel")
-        }
+}
+class Magazine(override val price: Int, override val wordCount: Int) : Publication{
+    override fun getType() = "Magazine"
     }
-    else println("Magazine")
 
 
 }
-fun buy (price: Double){
-    println("The purchase is complete. The purchase amount was $price")
 
+
+
+
+
+fun buy (publication: Publication){
+    println("The purchase is complete. The purchase amount was ${publication.price}")
 }
+
 
